@@ -1,0 +1,104 @@
+.chat {
+  flex: 0.65;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Название чата, аватар, кнопки */
+.chat__header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.chat__headerInfo {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.chat__headerInfo > h3 {
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.chat__headerInfo > p {
+  color: gray;
+}
+
+.chat__headerRight {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100px;
+}
+
+/* Тело чата (сообщения) */
+.chat__body {
+  background-image: url("../../assets/chat_bg.png");
+  background-size: contain;
+  background-position: 0 0;
+
+  flex: 1;
+  padding: 30px;
+  overflow: auto;
+}
+
+/* сообщение */
+.chat__message {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.chat__reciever {
+  margin-left: auto;
+  background-color: #dcf8c6;
+}
+
+.chat__name {
+  position: absolute;
+  top: -15px;
+  font-weight: 500;
+  font-size: xx-small;
+}
+
+.chat__timestamp {
+  margin-left: 10px;
+  font-size: xx-small;
+  color: gray;
+}
+
+/* поле ввода сообщения */
+.chat__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  height: 62px;
+}
+
+.chat__footer > .MuiSvgIcon-root {
+  color: gray;
+  padding: 10px;
+}
+
+.chat__footer > form {
+  flex: 1;
+  display: flex;
+}
+
+.chat__footer > form > input {
+  flex: 1;
+  border: 30px;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat__footer > form > button {
+  display: none;
+}
