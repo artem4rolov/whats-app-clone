@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 // функция авторизации
-import { getQrCode, userLogin } from "./authActions";
+import { getQrCode, userLogin, userLogout } from "./authActions";
 
 const initialState = {
   userStatus: null, // пользователь
@@ -42,16 +42,37 @@ const authSlice = createSlice({
       .addCase(getQrCode.pending, (state) => {
         state.loading = true;
         state.qrCode = null;
+        state.userStatus = null;
         state.error = null;
       })
       .addCase(getQrCode.fulfilled, (state, action) => {
         state.loading = false;
         state.qrCode = action.payload;
+        state.userStatus = null;
       })
       .addCase(getQrCode.rejected, (state, action) => {
         state.loading = false;
         state.qrCode = null;
         state.error = action.payload;
+        state.userStatus = null;
+      })
+      // разлогинить аккаунт
+      .addCase(userLogout.pending, (state) => {
+        state.loading = true;
+        state.qrCode = null;
+        state.userStatus = null;
+        state.error = null;
+      })
+      .addCase(userLogout.fulfilled, (state, action) => {
+        state.loading = false;
+        state.qrCode = action.payload;
+        state.userStatus = null;
+      })
+      .addCase(userLogout.rejected, (state, action) => {
+        state.loading = false;
+        state.qrCode = null;
+        state.error = action.payload;
+        state.userStatus = null;
       });
   },
 });

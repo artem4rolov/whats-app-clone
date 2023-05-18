@@ -5,10 +5,10 @@ import axios from "axios";
 // вход
 export const userLogin = createAsyncThunk(
   "auth/login",
-  async ({ IdInstance, ApiTokenInstance }) => {
+  async ({ idInstance, apiTokenInstance }) => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/waInstance${IdInstance}/getStateInstance/${ApiTokenInstance}`
+        `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/getStateInstance/${apiTokenInstance}`
       );
 
       return data.stateInstance;
@@ -21,10 +21,10 @@ export const userLogin = createAsyncThunk(
 // получить QR-код для авторизации аккаунта (затем необходимо повторно залогиниться в форме)
 export const getQrCode = createAsyncThunk(
   "auth/getQrCode",
-  async ({ IdInstance, ApiTokenInstance }) => {
+  async ({ idInstance, apiTokenInstance }) => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/waInstance${IdInstance}/qr/${ApiTokenInstance}`
+        `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/qr/${apiTokenInstance}`
       );
       return data.message;
     } catch (error) {
@@ -36,10 +36,10 @@ export const getQrCode = createAsyncThunk(
 // logout
 export const userLogout = createAsyncThunk(
   "auth/userLogout",
-  async ({ IdInstance, ApiTokenInstance }) => {
+  async ({ idInstance, apiTokenInstance }) => {
     try {
       const data = await apiClient.get(
-        `${process.env.REACT_APP_API_URL}/waInstance${IdInstance}/qr/${ApiTokenInstance}`
+        `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/logout/${apiTokenInstance}`
       );
 
       return data.status;

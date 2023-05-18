@@ -1,6 +1,6 @@
 .login {
-  width: 30vw;
-  height: 45vh;
+  width: 40vw;
+  min-height: 350px;
   background: white;
   padding: 20px;
   text-align: center;
@@ -15,12 +15,23 @@
   font-weight: 500;
 }
 
+.login__error {
+  color: red;
+  margin-bottom: 10px;
+}
+
 .login > form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   text-align: left;
   margin-bottom: 30px;
+}
+
+.login > form > .loader__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login > form > .input {
@@ -58,11 +69,29 @@
   background: #c7e4b3;
 }
 
-.login__subtitle {
+.login__qrcode {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.qrcode__refresh {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
-.login__subtitle:hover {
+.qrcode__refresh:hover {
   color: #c7e4b3;
+}
+
+.login__subtitle {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  padding: 5px;
+  background: #dcf8c6;
+}
+
+.login__subtitle:hover {
+  background: #c7e4b3;
 }

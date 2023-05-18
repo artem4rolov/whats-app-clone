@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQrCode, userLogin } from "../../redux/slices/auth/authActions";
 import { useNavigate } from "react-router";
 import { setUserInfo } from "../../redux/slices/auth/auth";
+import Loader from "../../components/Loader/Loader";
 
 import "./Login.css";
+import { CircularProgress } from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,8 +17,10 @@ const Login = () => {
   );
   const dispatch = useDispatch();
 
-  const [idInstance, setIdInstance] = React.useState(null);
-  const [apiTokenInstance, setApiTokenInstance] = React.useState(null);
+  const [idInstance, setIdInstance] = React.useState("1101820393");
+  const [apiTokenInstance, setApiTokenInstance] = React.useState(
+    "ea6933046cf743d3b36fc936a69284a8c8773d7c00634a24b8"
+  );
   const [showQr, setShowQr] = React.useState(false);
 
   const handleSubmit = (e) => {
@@ -26,14 +30,7 @@ const Login = () => {
     dispatch(setUserInfo({ idInstance, apiTokenInstance }));
 
     // авторизация
-    dispatch(
-      userLogin({ IdInstance: idInstance, ApiTokenInstance: apiTokenInstance })
-    );
-
-    // тут же получаем qr-код, на случай если аккаунт не авторизован
-    dispatch(
-      getQrCode({ IdInstance: idInstance, ApiTokenInstance: apiTokenInstance })
-    );
+    dispatch(userLogin({ idInstance, apiTokenInstance }));
   };
 
   React.useEffect(() => {
@@ -51,24 +48,34 @@ const Login = () => {
             <div className="input">
               <label htmlFor="">Ваш idInstance:</label>
               <input
+                value={idInstance}
                 type="text"
                 name="idInstance"
-                onInput={(e) => setIdInstance(e.target.value)}
+                onChange={(e) => setIdInstance(e.target.value)}
               />
             </div>
             <div className="input">
               <label htmlFor="">Ваш apiTokenInstance:</label>
               <input
+                value={apiTokenInstance}
                 type="text"
                 name="apiTokenInstance"
-                onInput={(e) => setApiTokenInstance(e.target.value)}
+                onChange={(e) => setApiTokenInstance(e.target.value)}
               />
             </div>
-            <input type="submit" value={"Войти"} />
+            {!loading ? <input type="submit" value={"Войти"} /> : <Loader />}
           </form>
+          <span className="login__error">
+            {userStatus !== "authorized"
+              ? "Авторизуйте аккаунт через QR-код"
+              : null}
+          </span>
           <span
             className="login__subtitle"
-            onClick={() => setShowQr((prev) => !prev)}
+            onClick={() => {
+              setShowQr((prev) => !prev);
+              dispatch(getQrCode({ idInstance, apiTokenInstance }));
+            }}
           >
             Авторизация аккаунта
           </span>
@@ -78,19 +85,30 @@ const Login = () => {
       {showQr && (
         <>
           <span className="login__title">Авторизация аккаунта</span>
+          {loading && <Loader />}
           {qrCode ? (
             <div className="qr__code">
-              {qrCode ? <img src={`data:image/png;base64,${qrCode}`} /> : ""}
+              {qrCode && <img src={`data:image/png;base64,${qrCode}`} />}
             </div>
           ) : (
             "QR-код появится в случае неавторизованного аккаунта Whats'App"
           )}
-          <span
-            className="login__subtitle"
-            onClick={() => setShowQr((prev) => !prev)}
-          >
-            Вход
-          </span>
+          <div className="login__qrcode">
+            <span
+              className="qrcode__refresh"
+              onClick={() =>
+                dispatch(getQrCode({ idInstance, apiTokenInstance }))
+              }
+            >
+              Обновить QR-код
+            </span>
+            <span
+              className="login__subtitle"
+              onClick={() => setShowQr((prev) => !prev)}
+            >
+              Вход
+            </span>
+          </div>
         </>
       )}
     </div>
