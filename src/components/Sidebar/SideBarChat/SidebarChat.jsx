@@ -3,7 +3,7 @@ import React from "react";
 import "./SidebarChat.css";
 import { Avatar } from "@mui/material";
 
-const SidebarChat = ({ addNewChat }) => {
+const SidebarChat = ({ addNewChat, chat }) => {
   const createChat = () => {
     const roomName = prompt("Придумайте название чата");
 
@@ -12,11 +12,15 @@ const SidebarChat = ({ addNewChat }) => {
     }
   };
 
+  React.useEffect(() => {}, []);
+
+  // console.log(chat);
+
   return !addNewChat ? (
     <div className="sidebarChat">
-      <Avatar />
+      <Avatar alt="chat avatar" src={chat ? chat.avatar : null} />
       <div className="sidebarChat__info">
-        <h2>Название чата</h2>
+        <h2>{chat.name}</h2>
         <p>Последнее сообщение</p>
       </div>
     </div>

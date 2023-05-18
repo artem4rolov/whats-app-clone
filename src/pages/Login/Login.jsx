@@ -66,7 +66,7 @@ const Login = () => {
             {!loading ? <input type="submit" value={"Войти"} /> : <Loader />}
           </form>
           <span className="login__error">
-            {userStatus !== "authorized"
+            {userStatus && userStatus !== "authorized"
               ? "Авторизуйте аккаунт через QR-код"
               : null}
           </span>

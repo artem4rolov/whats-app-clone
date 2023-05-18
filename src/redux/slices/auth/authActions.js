@@ -38,11 +38,46 @@ export const userLogout = createAsyncThunk(
   "auth/userLogout",
   async ({ idInstance, apiTokenInstance }) => {
     try {
-      const data = await apiClient.get(
+      const data = await axios.get(
         `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/logout/${apiTokenInstance}`
       );
 
       return data.status;
+    } catch (error) {
+      return error.status;
+    }
+  }
+);
+
+// получить данные о пользователе (wid)
+export const getUserWid = createAsyncThunk(
+  "auth/getUserWid",
+  async ({ idInstance, apiTokenInstance }) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/getSettings/${apiTokenInstance}`
+      );
+
+      return data.wid;
+    } catch (error) {
+      return error.status;
+    }
+  }
+);
+
+// получить аватар пользователя
+export const getUserAvatar = createAsyncThunk(
+  "auth/getUserAvatar",
+  async ({ idInstance, apiTokenInstance, id }) => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/getAvatar/${apiTokenInstance}`,
+        {
+          chatId: id,
+        }
+      );
+
+      return data.urlAvatar;
     } catch (error) {
       return error.status;
     }

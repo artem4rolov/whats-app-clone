@@ -1,0 +1,31 @@
+/* Аватарка и другие кнопки */
+.sidebar__header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-right: 1px solid lightgray;
+}
+
+/* модальное окно */
+
+.modal {
+  position: absolute;
+  background: #f6f6f6;
+  /* padding: 20px; */
+  width: 100px;
+  top: 80%;
+  right: 8%;
+}
+
+.sidebar__headerRight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 10vw;
+}
+
+.sidebar__headerRight > .MuiSvgIcon-root {
+  margin-right: 2vw;
+  font-size: 24px !important;
+}

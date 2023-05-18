@@ -1,8 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 // функция авторизации
-import { getQrCode, userLogin, userLogout } from "./authActions";
+import {
+  getQrCode,
+  getUserAvatar,
+  getUserWid,
+  userLogin,
+  userLogout,
+} from "./authActions";
 
 const initialState = {
+  userWid: null, // id пользователя
+  userAvatar: null, // аватарка пользователя
   userStatus: null, // пользователь
   idInstance: null, // id инстанса из личного кабинета green.api
   apiTokenInstance: null, // токен инстанса из личного кабинета green.api
@@ -73,6 +81,36 @@ const authSlice = createSlice({
         state.qrCode = null;
         state.error = action.payload;
         state.userStatus = null;
+      })
+      // получить данные пользователя (wid)
+      .addCase(getUserWid.pending, (state) => {
+        state.loading = true;
+        state.userWid = null;
+        state.error = null;
+      })
+      .addCase(getUserWid.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userWid = action.payload;
+      })
+      .addCase(getUserWid.rejected, (state, action) => {
+        state.loading = false;
+        state.userWid = null;
+        state.error = action.payload;
+      })
+      // получить аватар пользователя
+      .addCase(getUserAvatar.pending, (state) => {
+        state.loading = true;
+        state.userAvatar = null;
+        state.error = null;
+      })
+      .addCase(getUserAvatar.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userAvatar = action.payload;
+      })
+      .addCase(getUserAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.userAvatar = null;
+        state.error = action.payload;
       });
   },
 });
