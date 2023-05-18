@@ -1,0 +1,39 @@
+/* Тело чата (сообщения) */
+.chat__body {
+  background-image: url("../../../assets/chat_bg.png");
+  background-size: contain;
+  background-position: 0 0;
+
+  flex: 1;
+  padding: 30px;
+  overflow: auto;
+}
+
+/* сообщение */
+.chat__message {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.chat__reciever {
+  margin-left: auto;
+  background-color: #dcf8c6;
+}
+
+.chat__name {
+  position: absolute;
+  top: -15px;
+  font-weight: 500;
+  font-size: xx-small;
+}
+
+.chat__timestamp {
+  margin-left: 10px;
+  font-size: xx-small;
+  color: gray;
+}

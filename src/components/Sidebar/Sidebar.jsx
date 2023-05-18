@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Sidebar.css";
 
 import SidebarChat from "./SideBarChat/SidebarChat";
-import SidebarHeader from "./SideBarHeader/SidebarHeader";
+import Loader from "../Loader/Loader";
+import SideBarHeader from "./SideBarHeader/SideBarHeader";
 import SidebarSearch from "./SideBarSearch/SidebarSearch";
 
 const Sidebar = () => {
@@ -12,7 +13,9 @@ const Sidebar = () => {
 
   // достаем переменные из redux
   const { apiTokenInstance, idInstance } = useSelector((state) => state.auth);
-  const { chats, currentChat, loading } = useSelector((state) => state.chats);
+  const { chats, currentChat, loadingChats } = useSelector(
+    (state) => state.chats
+  );
 
   React.useEffect(() => {
     // dispatch(getChats({ apiTokenInstance, idInstance }));
@@ -22,14 +25,23 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <SidebarHeader />
+      {/* шапка с аватаркой и кнопками (+модалка logout) */}
+      <SideBarHeader />
 
+      {/* поиск чатов по номеру телефона */}
       <SidebarSearch />
 
-      <div className="sidebar__chats">
-        {/* <SidebarChat addNewChat /> */}
-        {currentChat ? <SidebarChat chat={currentChat} /> : "chats && chats"}
-      </div>
+      {/* вывод чатов (вывод чата при поиске) */}
+      {!loadingChats ? (
+        <div className="sidebar__chats">
+          {/* <SidebarChat addNewChat /> */}
+          {currentChat ? <SidebarChat chat={currentChat} /> : "chats && chats"}
+        </div>
+      ) : (
+        <div className="sidebar__chats">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

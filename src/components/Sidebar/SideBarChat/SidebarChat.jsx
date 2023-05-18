@@ -1,9 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./SidebarChat.css";
+
 import { Avatar } from "@mui/material";
+import { setSelectedChat } from "../../../redux/slices/messages/messages";
+import { getLastMessage } from "../../../redux/slices/chats/chatsActions";
 
 const SidebarChat = ({ addNewChat, chat }) => {
+  const dispatch = useDispatch();
+
+  // достаем переменные из redux
+  const { idInstance, apiTokenInstance } = useSelector((state) => state.auth);
+  const { chats, currentChat, loadingChats, lastMessage } = useSelector(
+    (state) => state.chats
+  );
+
   const createChat = () => {
     const roomName = prompt("Придумайте название чата");
 
@@ -12,12 +24,27 @@ const SidebarChat = ({ addNewChat, chat }) => {
     }
   };
 
-  React.useEffect(() => {}, []);
+  // React.useEffect(() => {
+  //   if (chat) {
+  //     dispatch(
+  //       getLastMessage({
+  //         idInstance,
+  //         apiTokenInstance,
+  //         phoneNumber: chat.chatId,
+  //       })
+  //     );
+  //   }
 
-  // console.log(chat);
+  //   return () => {};
+  // }, [idInstance, apiTokenInstance, dispatch, chat]);
+
+  console.log(chat);
 
   return !addNewChat ? (
-    <div className="sidebarChat">
+    <div
+      className="sidebarChat"
+      onClick={() => dispatch(setSelectedChat(chat))}
+    >
       <Avatar alt="chat avatar" src={chat ? chat.avatar : null} />
       <div className="sidebarChat__info">
         <h2>{chat.name}</h2>

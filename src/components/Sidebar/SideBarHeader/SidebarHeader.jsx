@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router";
 
-import "./SidebarHeader.css";
+import "./SideBarHeader.css";
 
 import Fade from "@mui/material/Fade";
 import Menu from "@mui/material/Menu";
@@ -16,7 +16,7 @@ import {
   userLogout,
 } from "../../../redux/slices/auth/authActions";
 
-const SidebarHeader = () => {
+const SideBarHeader = () => {
   const dispatch = useDispatch();
 
   // достаем переменные из redux
@@ -91,4 +91,4 @@ const SidebarHeader = () => {
   );
 };
 
-export default SidebarHeader;
+export default SideBarHeader;

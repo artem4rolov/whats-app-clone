@@ -1,73 +1,33 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./Chat.css";
-import { Avatar, IconButton } from "@mui/material";
-import {
-  AttachFile,
-  InsertEmoticon,
-  Mic,
-  MoreVert,
-  SearchOutlined,
-} from "@mui/icons-material";
+
+import ChatHeader from "./ChatHeader/ChatHeader";
+import ChatBody from "./ChatBody/ChatBody";
+import ChatFooter from "./ChatFooter/ChatFooter";
 
 const Chat = () => {
-  const [input, setInput] = React.useState("");
+  const dispatch = useDispatch();
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-  };
+  // достаем переменные из redux
+  const { apiTokenInstance, idInstance } = useSelector((state) => state.auth);
+  const { chat, loadingMessages } = useSelector((state) => state.messages);
 
   return (
     <div className="chat">
-      <div className="chat__header">
-        <Avatar />
+      {chat && (
+        <>
+          {/* шапка чата */}
+          <ChatHeader />
 
-        <div className="chat__headerInfo">
-          <h3>Название чата</h3>
-          <p>Последний раз был(а) в сети...</p>
-        </div>
+          {/* сообщения чата */}
+          <ChatBody />
 
-        <div className="chat__headerRight">
-          <IconButton>
-            <SearchOutlined />
-          </IconButton>
-          <IconButton>
-            <AttachFile />
-          </IconButton>
-          <IconButton>
-            <MoreVert />
-          </IconButton>
-        </div>
-      </div>
-
-      <div className="chat__body">
-        {/* мое сообщение */}
-        <p className={`chat__message ${true && "chat__reciever"}`}>
-          <span className="chat__name">Артем Фролов</span>
-          привет
-          <span className="chat__timestamp">12:44</span>
-        </p>
-        {/* сообщение собеседника */}
-        <p className={`chat__message`}>
-          <span className="chat__name">не Артем Фролов</span>И тебе привет
-          <span className="chat__timestamp">12:44</span>
-        </p>
-      </div>
-
-      <div className="chat__footer">
-        <InsertEmoticon />
-        <form action="">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            type="text"
-            name=""
-            id=""
-          />
-          <button onClick={sendMessage}>Отправить</button>
-        </form>
-        <Mic />
-      </div>
+          {/* ввод сообщения */}
+          <ChatFooter />
+        </>
+      )}
     </div>
   );
 };

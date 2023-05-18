@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getChatBySearch, getChats } from "./chatsActions";
-// функция авторизации
+import { getChatBySearch, getLastMessage } from "./chatsActions";
 
 const initialState = {
   currentChat: null, // пользователь
+  lastMessage: null, // последнее сообшение
   chats: null, // id инстанса из личного кабинета green.api
   loadingChats: false, // отображение загрузки
   error: null, // значение ошибки
@@ -35,6 +35,21 @@ const chatsSlice = createSlice({
       .addCase(getChatBySearch.rejected, (state, action) => {
         state.loadingChats = false;
         state.currentChat = null;
+        state.error = action.payload;
+      })
+      // получение последнего сообщения
+      .addCase(getLastMessage.pending, (state) => {
+        state.loadingChats = true;
+        state.lastMessage = null;
+        state.error = null;
+      })
+      .addCase(getLastMessage.fulfilled, (state, action) => {
+        state.loadingChats = false;
+        state.lastMessage = action.payload;
+      })
+      .addCase(getLastMessage.rejected, (state, action) => {
+        state.loadingChats = false;
+        state.lastMessage = null;
         state.error = action.payload;
       });
   },

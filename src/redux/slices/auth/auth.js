@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// функция авторизации
 import {
   getQrCode,
   getUserAvatar,
