@@ -35,7 +35,13 @@ const Sidebar = () => {
       {!loadingChats ? (
         <div className="sidebar__chats">
           {/* <SidebarChat addNewChat /> */}
-          {currentChat ? <SidebarChat chat={currentChat} /> : "chats && chats"}
+          {currentChat ? (
+            <SidebarChat chat={currentChat} />
+          ) : (
+            <span className="sidebar__desc">
+              Найдите чат и выберете его в списке
+            </span>
+          )}
         </div>
       ) : (
         <div className="sidebar__chats">

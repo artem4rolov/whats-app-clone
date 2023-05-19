@@ -41,3 +41,19 @@ export const sendMessage = createAsyncThunk(
     }
   }
 );
+
+// получение уведомлений
+export const getNotifications = createAsyncThunk(
+  "messages/getNotifications",
+  async ({ idInstance, apiTokenInstance }) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/waInstance${idInstance}/receiveNotification/${apiTokenInstance}`
+      );
+
+      return data;
+    } catch (error) {
+      return error.response.message;
+    }
+  }
+);

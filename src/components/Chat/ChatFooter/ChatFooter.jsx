@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ChatFooter.css";
 
 import { InsertEmoticon, Mic } from "@mui/icons-material";
-import { sendMessage } from "../../../redux/slices/messages/messagesActions";
+import {
+  getMessages,
+  getNotifications,
+  sendMessage,
+} from "../../../redux/slices/messages/messagesActions";
 
 const ChatFooter = () => {
   const dispatch = useDispatch();
@@ -17,16 +21,20 @@ const ChatFooter = () => {
   const [input, setInput] = React.useState("");
 
   // отправка сообщения
-  const sendMess = () => {
+  const sendMess = async () => {
     if (input && idInstance && apiTokenInstance) {
-      dispatch(
-        sendMessage({
-          idInstance,
-          apiTokenInstance,
-          phoneNumber: chat.chatId,
-          message: input,
-        })
-      );
+      await new Promise((res, rej) => {
+        dispatch(
+          sendMessage({
+            idInstance,
+            apiTokenInstance,
+            phoneNumber: chat.chatId,
+            message: input,
+          })
+        );
+        console.log("first");
+        res();
+      });
     }
   };
 

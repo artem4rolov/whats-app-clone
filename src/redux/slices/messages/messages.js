@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMessages, sendMessage } from "./messagesActions";
+import { getMessages, getNotifications, sendMessage } from "./messagesActions";
 
 const initialState = {
   chat: null, // пользователь
   messages: null, // id инстанса из личного кабинета green.api
+  notification: null, // уведомления
   needRefreshData: false, // флаг на обновление данных
   loadingMessages: false, // отображение загрузки
   error: null, // значение ошибки
@@ -50,6 +51,21 @@ const messagesSlice = createSlice({
         state.needRefreshData = false;
         state.error = action.payload;
       });
+    // получение уведомлений
+    // .addCase(getNotifications.pending, (state) => {
+    //   state.loadingMessages = true;
+    //   state.needRefreshData = false;
+    //   state.error = null;
+    // })
+    // .addCase(getNotifications.fulfilled, (state, action) => {
+    //   state.loadingMessages = false;
+    //   state.needRefreshData = true;
+    // })
+    // .addCase(getNotifications.rejected, (state, action) => {
+    //   state.loadingMessages = false;
+    //   state.needRefreshData = false;
+    //   state.error = action.payload;
+    // });
   },
 });
 

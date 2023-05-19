@@ -38,8 +38,6 @@ const SidebarChat = ({ addNewChat, chat }) => {
   //   return () => {};
   // }, [idInstance, apiTokenInstance, dispatch, chat]);
 
-  console.log(chat);
-
   return !addNewChat ? (
     <div
       className="sidebarChat"

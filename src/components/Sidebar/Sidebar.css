@@ -10,3 +10,9 @@
   overflow: auto;
   background-color: #f6f6f6;
 }
+
+.sidebar__desc {
+  padding: 20px;
+  width: 100%;
+  color: lightgray;
+}

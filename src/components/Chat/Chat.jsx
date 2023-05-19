@@ -16,7 +16,7 @@ const Chat = () => {
 
   return (
     <div className="chat">
-      {chat && (
+      {chat ? (
         <>
           {/* шапка чата */}
           <ChatHeader />
@@ -27,6 +27,10 @@ const Chat = () => {
           {/* ввод сообщения */}
           <ChatFooter />
         </>
+      ) : (
+        <div className="chat__placeholder">
+          <span>Выберите чат и начните общение!</span>
+        </div>
       )}
     </div>
   );

@@ -2,7 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./ChatBody.css";
-import { getMessages } from "../../../redux/slices/messages/messagesActions";
+import {
+  getMessages,
+  getNotifications,
+} from "../../../redux/slices/messages/messagesActions";
 
 const ChatBody = () => {
   const dispatch = useDispatch();
@@ -22,15 +25,26 @@ const ChatBody = () => {
       return;
     }
 
+    return () => {};
+  }, []);
+
+  // если необходимо обновить список сообщений - делаем соответствующий запрос
+  React.useEffect(() => {
     if (needRefreshData) {
-      dispatch(
-        getMessages({ idInstance, apiTokenInstance, phoneNumber: chat.chatId })
-      );
+      setTimeout(() => {
+        dispatch(
+          getMessages({
+            idInstance,
+            apiTokenInstance,
+            phoneNumber: chat.chatId,
+          })
+        );
+      }, 3000);
       return;
     }
 
     return () => {};
-  }, [chat, needRefreshData]);
+  }, [needRefreshData]);
 
   // скроллим до последнего особщения
   React.useEffect(() => {
