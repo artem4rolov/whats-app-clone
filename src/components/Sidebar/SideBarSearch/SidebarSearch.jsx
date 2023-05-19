@@ -35,6 +35,7 @@ const SidebarSearch = () => {
           type="text"
           placeholder="Введите номер абонента"
           value={input}
+          onChange={() => {}}
           onInput={(e) => setInput(e.target.value)}
         />
         <input
