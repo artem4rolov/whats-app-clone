@@ -19,7 +19,7 @@
   <br/>
   <h3>5. При выборе чата открвается окно диалога с собеседником</h3>
   <br/>
-  <img src="https://i.ibb.co/YfBbg46/image.png" alt="image" border="0">
+  <img src="https://i.ibb.co/YfBbg46/image.png" alt="image" border="0" />
   <br/>
 
 
