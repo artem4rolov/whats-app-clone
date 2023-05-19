@@ -1,10 +1,19 @@
 # Whats-App (Green API)
 
-<h3>1. Регистрация и авторизация пользователя</h3>
+!!!Перед началом работы, пожалуйста, склонируйте репозиторий и выполните команду npm install для установки всех зависимостей проекта на вашей локальной машине.
+
+<h3>1. Авторизация пользователя с помощью данных Green API (idInstance, apiTokenInstance) </h3>
   <br/>
   <img src="https://i.ibb.co/LtT3hLR/image.png" alt="image" border="0">
   <br/>
-  <h3>2. Интерфейс разделен на две части. Слева - сайдбар с поиском и списком чатов пользователя, справа - чат с конкретным пользователем</h3>
+  <h3>2. В случае, если аккаунт не авторизован - есть возможность авторизации по  QR-коду, с пмощью мобильного приложения Whats App</h3>
   <br/>
-  <a href="https://ibb.co/gT0xF59"><img src="[https://i.ibb.co/hYDXKVw/2.jpg](https://ibb.co/gT0xF59)" alt="2" border="0"></a>
+  <img src="https://i.ibb.co/V35k4T4/image.png" alt="image" border="0">
+  <h3>3. Интерфейс приложения </h3>
+  <br/>
+ <img src="https://i.ibb.co/TPrL9rL/image.png" alt="image" border="0">
+  <br/>
+  <h3>4. Поиск абонентов осуществляется в формате "7 777 777 77 77" (без пробелов, дефисов и плюсов)</h3>
+  <br/>
+  <img src="https://i.ibb.co/47mxXjM/image.png" alt="image" border="0">
 
