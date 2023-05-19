@@ -15,5 +15,5 @@
   <br/>
   <h3>4. Поиск абонентов осуществляется в формате "7 777 777 77 77" (без пробелов, дефисов и плюсов)</h3>
   <br/>
-  <img src="https://i.ibb.co/47mxXjM/image.png" alt="image" border="0">
+  <img src="https://i.ibb.co/47mxXjM/image.png" alt="image" border="0"> 
 
