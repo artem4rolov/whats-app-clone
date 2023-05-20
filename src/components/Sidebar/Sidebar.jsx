@@ -5,8 +5,8 @@ import "./Sidebar.css";
 
 import SidebarChat from "./SideBarChat/SidebarChat";
 import Loader from "../Loader/Loader";
-import SideBarHeader from "./SideBarHeader/SideBarHeader";
 import SidebarSearch from "./SideBarSearch/SidebarSearch";
+import Header from "./SideBarHeader/SideBarHeader";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       {/* шапка с аватаркой и кнопками (+модалка logout) */}
-      <SideBarHeader />
+      <Header />
 
       {/* поиск чатов по номеру телефона */}
       <SidebarSearch />
