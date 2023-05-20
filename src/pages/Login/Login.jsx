@@ -17,10 +17,8 @@ const Login = () => {
   );
   const dispatch = useDispatch();
 
-  const [idInstance, setIdInstance] = React.useState("1101822776");
-  const [apiTokenInstance, setApiTokenInstance] = React.useState(
-    "fc9996b05e944ef0a4bf620fb7c8ce17ceebc799d407477894"
-  );
+  const [idInstance, setIdInstance] = React.useState("");
+  const [apiTokenInstance, setApiTokenInstance] = React.useState("");
   const [showQr, setShowQr] = React.useState(false);
 
   const handleSubmit = (e) => {
